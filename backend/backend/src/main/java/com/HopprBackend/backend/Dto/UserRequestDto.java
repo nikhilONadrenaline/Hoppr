@@ -5,10 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class AuthCookieDTO {
+@NoArgsConstructor
+public class UserRequestDto {
 
-    private String sessionId;
-    private String userId;
+    private String name;
+    private String avatar;
+    private String password;
+
 }

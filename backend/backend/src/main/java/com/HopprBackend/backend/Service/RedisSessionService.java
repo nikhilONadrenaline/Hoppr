@@ -1,5 +1,6 @@
 package com.HopprBackend.backend.Service;
 
+import com.HopprBackend.backend.Dto.UserResponseDto;
 import com.HopprBackend.backend.Entity.User;
 import com.HopprBackend.backend.Repository.UserRepository;
 import com.HopprBackend.backend.Entity.UserSession;
@@ -15,12 +16,14 @@ import java.time.Duration;
 public class RedisSessionService {
 
     @Autowired
-    private RedisTemplate<String,String> redisTemplate;;
+    private RedisTemplate<String,String> redisTemplate;
+    @Autowired
+    RedisTemplate<String, UserResponseDto> userRedisTemplate;
 
     @Autowired
-    private UserRepository userRepository;
+    private  UserService userService;
 
-    public User validateSession(String sessionId, String userId) {
+    public UserResponseDto validateSession(String sessionId, String userId) {
 
         String redisUserId =
                 redisTemplate.opsForValue().get("session:" + sessionId);
@@ -33,13 +36,11 @@ public class RedisSessionService {
             return null;
         }
 
-        return userRepository.findById(userId).orElse(null);
+        UserResponseDto user=userService.fetchUser(userId);
+        return user;
     }
 
-    public void createSession(
-            String sessionId,
-            String userId
-    ){
+    public void createSession(String sessionId,String userId){
 
         redisTemplate.opsForValue().set(
 

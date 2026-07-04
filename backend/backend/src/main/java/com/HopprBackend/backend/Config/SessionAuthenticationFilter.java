@@ -1,6 +1,7 @@
 package com.HopprBackend.backend.Config;
 
-import com.HopprBackend.backend.Dto.AuthCookieDTO;
+import com.HopprBackend.backend.Dto.AuthCookieDto;
+import com.HopprBackend.backend.Dto.UserResponseDto;
 import com.HopprBackend.backend.Entity.User;
 import com.HopprBackend.backend.Repository.UserRepository;
 import com.HopprBackend.backend.Service.CookieService;
@@ -46,11 +47,11 @@ public class SessionAuthenticationFilter extends OncePerRequestFilter {
 
                 if(cookie.getName().equals("auth")){
 
-                    AuthCookieDTO auth =cookieService.readCookie(cookie.getValue());
+                    AuthCookieDto auth =cookieService.readCookie(cookie.getValue());
 
                     if(auth == null) break;
 
-                    User redisUser =sessionService.validateSession(auth.getSessionId(),auth.getUserId());
+                    UserResponseDto redisUser =sessionService.validateSession(auth.getSessionId(),auth.getUserId());
 
                     if(redisUser == null) break;
 

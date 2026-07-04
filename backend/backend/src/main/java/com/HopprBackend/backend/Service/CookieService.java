@@ -1,6 +1,6 @@
 package com.HopprBackend.backend.Service;
 
-import com.HopprBackend.backend.Dto.AuthCookieDTO;
+import com.HopprBackend.backend.Dto.AuthCookieDto;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class CookieService {
         response.addCookie(cookie);
     }
 
-    public AuthCookieDTO readCookie(String encodedCookie) {
+    public AuthCookieDto readCookie(String encodedCookie) {
 
         try {
 
@@ -40,7 +40,7 @@ public class CookieService {
                 return null;
             }
 
-            return new AuthCookieDTO(parts[0], parts[1]);
+            return new AuthCookieDto(parts[0], parts[1]);
 
         } catch (Exception e) {
             return null;
