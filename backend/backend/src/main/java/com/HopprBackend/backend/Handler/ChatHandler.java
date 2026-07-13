@@ -66,10 +66,7 @@ public class ChatHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session,TextMessage message) throws Exception {
 
-        chatService.handleIncomingMessage(
-                session,
-                message.getPayload()
-        );
+        chatService.handleIncomingMessage(session,message.getPayload());
     }
 
     @Override
