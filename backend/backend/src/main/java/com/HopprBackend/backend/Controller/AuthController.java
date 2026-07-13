@@ -51,7 +51,7 @@ public class AuthController {
         return userService.fetchUser(userId);
     }
 
-    @GetMapping("/login/password-needed")
+    @PostMapping("/login/password-needed")
     public UserResponseDto verifyUser(@RequestBody String password, @CookieValue("auth") String authCookie, HttpServletResponse response)
     {
         AuthCookieDto auth = cookieService.readCookie(authCookie);
