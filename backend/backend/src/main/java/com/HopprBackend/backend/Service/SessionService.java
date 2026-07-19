@@ -3,6 +3,8 @@ package com.HopprBackend.backend.Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.socket.WebSocketSession;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -35,5 +37,11 @@ public class SessionService {
 
     public WebSocketSession getSession(String userId) {
         return userSessions.get(userId);
+    }
+
+    public List<String> getUsers() {
+        List<String> users=new ArrayList<>();
+        users=userSessions.keySet().stream().toList();
+        return users;
     }
 }

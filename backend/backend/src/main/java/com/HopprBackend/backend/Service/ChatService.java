@@ -30,7 +30,7 @@ public class ChatService {
         String senderId =sessionService.getUserId(session);
 
         Message message = getMessage(messageDto, senderId);
-        Message savedMessage= messageRepository.save(message);  // Id from mongoDb
+        Message savedMessage= messageRepository.save(message);  // ID from mongoDb
 
 
         ReceivedMessageDto response = getReceivedMessageDto(savedMessage);
